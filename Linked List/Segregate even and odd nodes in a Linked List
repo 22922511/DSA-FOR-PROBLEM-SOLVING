@@ -1,0 +1,26 @@
+ Node* divide(Node* head) {
+        // code here
+        Node*a=new Node(0);
+        Node*b=new Node(0);
+        
+        Node*a_head=a;
+        Node*b_head=b;
+        
+        while(head){
+            long long num=head->data;
+            
+            if(num%2){
+                b->next=head;
+                b=b->next;
+            }else{
+                a->next=head;
+                a=a->next;
+            }
+            head=head->next;
+        }
+        a->next=NULL;
+        b->next=NULL;
+        
+        a->next=b_head->next;
+    return a_head->next;
+    }
