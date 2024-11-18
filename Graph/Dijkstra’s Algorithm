@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long int
+vector<vector<pair<int,int>>>adj;
+priority_queue<pair<int,int>>q;
+vector<int>dis;
+
+void djkstra(int nod,int edg){
+    
+    dis[nod]=-edg;
+    q.push({edg,nod});
+    
+    while(!q.empty()){
+        int e=-q.top().first;
+        int u=q.top().second;
+        
+        q.pop();
+        if(dis[u]<e) continue;
+        
+        for(auto id :adj[u]){
+            int v=id.first;
+            int dist=id.second;
+            
+            if(dis[v]<=dist+e) continue;
+            else{
+                dis[v]=dist+e;
+                q.push({-dis[v],v});
+            }
+            
+        }
+    }
+}
+signed main()
+{
+  int n,m;
+  cin>>n>>m;
+  
+  adj.resize(n+1);
+  dis.resize(n+1,1e17);
+  
+  for(int i=0;i<m;i++){
+      int u,v,e;
+      cin>>u>>v>>e;
+      adj[u].push_back({v,e});
+  }
+
+  djkstra(1,0);
+  for(int i=1;i<=n;i++) cout<<dis[i]<<" ";
+    return 0;
+}
