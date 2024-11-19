@@ -1,0 +1,23 @@
+ void nextPermutation(vector<int>& arr) {
+        // code here
+        int n=arr.size();
+        int pivot=-1;
+        
+        for(int i=n-1;i>0;i--){
+            if(arr[i-1]<arr[i]){
+                pivot=i-1;
+                break;
+            }
+        }
+        
+        reverse(arr.begin()+pivot+1,arr.end());
+        
+        if(pivot!=-1){
+            for(int i=pivot;i<n;i++){
+                if(arr[i]>arr[pivot]){
+                    swap(arr[pivot],arr[i]);
+                    break;
+                }
+            }
+        }
+    }
