@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n,m;
-int INF=1e17;
+Cconst long long int INF=1e17; // important line
 vector<vector<int>>gp;
 vector<int>dis;
 
