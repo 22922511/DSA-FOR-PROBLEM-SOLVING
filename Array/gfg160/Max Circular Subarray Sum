@@ -1,0 +1,20 @@
+  int circularSubarraySum(vector<int> &arr) {
+   int n=arr.size();
+   int sum=0;
+    for(int i=0;i<n;i++) sum+=arr[i];
+    
+    int curmax=0,glmax=arr[0];
+    int curmin=0,glmin=arr[0];
+    
+    for(int i=1;i<n;i++){
+        curmax=max(curmax+arr[i],arr[i]);
+        glmax=max(glmax,curmax);
+        
+        curmin=min(curmin+arr[i],arr[i]);
+        glmin=min(glmin,curmin);
+    }
+    
+    if(glmax<0) return glmax;
+    
+    return max(sum-glmin,glmax);
+    }
