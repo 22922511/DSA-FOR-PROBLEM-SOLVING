@@ -1,0 +1,24 @@
+  vector<vector<int>>ans;
+  vector<int>tem;
+  void rec(Node*root){
+      if(root==NULL) return;
+      
+      if(root->left==NULL && root->right==NULL ){
+          tem.push_back(root->data);
+          ans.push_back(tem);
+          tem.pop_back();
+          return;
+      }
+      tem.push_back(root->data);
+      
+      rec(root->left);
+      rec(root->right);
+      
+      tem.pop_back();
+}
+    vector<vector<int>> Paths(Node* root) {
+    ans.clear();
+    tem.clear();
+    rec(root);
+    return ans;
+    }
